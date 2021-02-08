@@ -1,0 +1,70 @@
+:root {
+    --cube-size: 100vw;
+    --translate-distance: 50vw;
+}
+
+* { box-sizing: border-box; }
+
+body { 
+    font-family: sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.scene {
+    width: var(--cube-size);
+    height: var(--cube-size);
+    margin: 80px;
+    cursor: grab;
+}
+
+.scene:active {
+    cursor: grabbing;
+}
+
+.cube {
+    width: var(--cube-size);
+    height: var(--cube-size);
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(calc(var(--translate-distance) * -1));
+}
+
+.cube-face {
+    position: absolute;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    border: 4px solid black;
+    display: grid;
+    grid: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-gap: 4px;
+}
+
+/* .front  { transform: rotateY(  0deg) translateZ(var(--translate-distance)); } */
+.right  { transform: rotateY( 90deg) translateZ(var(--translate-distance)); }
+.back   { transform: rotateY(180deg) translateZ(var(--translate-distance)); }
+.left   { transform: rotateY(-90deg) translateZ(var(--translate-distance)); }
+.top    { transform: rotateX( 90deg) translateZ(var(--translate-distance)); }
+.bottom { transform: rotateX(-90deg) translateZ(var(--translate-distance)); }
+
+.cube-face > div {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: .5;
+}
+
+.cube-face > div:hover {
+    opacity: 1;
+}
+
+@media (orientation: landscape) {
+    :root {
+        --cube-size: 100vh;
+        --translate-distance: 50vh;
+    }
+}
