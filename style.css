@@ -32,9 +32,10 @@ body {
     position: relative;
     transform-style: preserve-3d;
     transform: translateZ(calc(var(--translate-distance) * -1));
+    transition: all 1s;
 }
 
-.cube-face {
+.cube > div {
     position: absolute;
     width: var(--cube-size);
     height: var(--cube-size);
@@ -42,24 +43,18 @@ body {
     display: grid;
     grid: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 4px;
+    transition: opacity .5s;
 }
 
-/* .front  { transform: rotateY(  0deg) translateZ(var(--translate-distance)); } */
-.right  { transform: rotateY( 90deg) translateZ(var(--translate-distance)); }
-.back   { transform: rotateY(180deg) translateZ(var(--translate-distance)); }
-.left   { transform: rotateY(-90deg) translateZ(var(--translate-distance)); }
-.top    { transform: rotateX( 90deg) translateZ(var(--translate-distance)); }
-.bottom { transform: rotateX(-90deg) translateZ(var(--translate-distance)); }
-
-.cube-face > div {
+.cube > div > div {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     opacity: .5;
 }
 
-.cube-face > div:hover {
-    opacity: 1;
+.cube > div:hover {
+    opacity: 0;
 }
 
 @media (orientation: landscape) {
